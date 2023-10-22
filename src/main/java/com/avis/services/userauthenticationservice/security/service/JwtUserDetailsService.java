@@ -28,25 +28,5 @@ public class JwtUserDetailsService implements UserDetailsService {
 			System.out.println("No User Found");
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
-		
-//		if ("admin".equals(username)) {
-//			return new User(
-//				"admin",
-////				"demo@123",
-//				"$2a$10$.KHH/tBblriAEr8xYyAhSOah0kg.v.XaZoIZOc8wFT5urnwqMCpim",
-//				new ArrayList<>()
-//			);
-//
-//		} else if ("avis".equals(username)) {
-//			return new User(
-//					"avis",
-////					"avis@10",
-//				"$2a$12$grSUF050gMxJMKBh33IWzOKQO7/W.6b37w8PVHkZ8UkYSPI9BXAXK",
-//					new ArrayList<>()
-//			);
-//		} else {
-//			System.out.println("No User Found");
-//			throw new UsernameNotFoundException("User not found with username: " + username);
-//		}
 	}
 }
