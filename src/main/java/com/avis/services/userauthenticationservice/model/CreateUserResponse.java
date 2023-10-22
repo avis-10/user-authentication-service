@@ -6,15 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Setter
 @Getter
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 public class CreateUserResponse {
-    private UUID userId;
+    private String uuid;
     private String firstName;
     private String lastName;
     private String userName;

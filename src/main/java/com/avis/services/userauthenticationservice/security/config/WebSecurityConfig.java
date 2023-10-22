@@ -69,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/h2-console/**", "/h2-console/login.do?**").permitAll() // Allow access to H2 Console
 				.antMatchers("/actuator/**").permitAll() // Allow access to Actuator urls
 				.antMatchers("/users/create").permitAll()
+				.antMatchers("/users/uuid/**").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and()
 				// make sure we use stateless session; session won't be used to

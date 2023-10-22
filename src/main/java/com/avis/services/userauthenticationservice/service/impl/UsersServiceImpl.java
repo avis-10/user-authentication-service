@@ -37,32 +37,36 @@ public class UsersServiceImpl implements UsersService {
         validateNewUser(request);
         AuthUser newAuthuser = new AuthUser();
         newAuthuser.setUsername(request.getUserName());
-        newAuthuser.setEncryptedPassword(generatedEncryptedPassword(request.getPassword()));
+        newAuthuser.setEncryptedPassword(generateEncryptedPassword(request.getPassword()));
+        newAuthuser.setUuid(UUID.randomUUID().toString());
+        newAuthuser.setFirstName(request.getFirstName());
+        newAuthuser.setLastName(request.getLastName());
+        newAuthuser.setEmailId(request.getEmailId());
         AuthUser authUser = authUserRepo.save(newAuthuser);
 
-        CreateUserResponse response = new CreateUserResponse(UUID.randomUUID(), request.getFirstName(),
-                request.getLastName(), authUser.getUsername(), request.getEmailId());
+        CreateUserResponse response = new CreateUserResponse(authUser.getUuid(), authUser.getFirstName(),
+                authUser.getLastName(), authUser.getUsername(), authUser.getEmailId());
 
         return response;
     }
 
     @Override
-    public CreateUserResponse getUserById(UUID id) {
-        return null;
+    public CreateUserResponse getUserByUuid(String id) {
+        Optional<AuthUser> authUser = authUserRepo.findByUuid(id);
+        if (authUser.isPresent()) {
+            return buildResponse(authUser.get());
+        } else throw new UsernameNotFoundException("User with given uuid not found !");
     }
 
     @Override
     public CreateUserResponse getUserByUsername(String username) {
-        CreateUserResponse response;
-        Optional<AuthUser> optAuthuser = authUserRepo.findById(username);
-        optAuthuser.ifPresentOrElse(authUser -> {
-            // Need to implement this logic.
-            // Add UUID column and other columns to authuser table
-                },
-                () -> { throw new UsernameNotFoundException("Username not found !"); });
+        Optional<AuthUser> authUser = authUserRepo.findById(username);
+        if (authUser.isPresent()) {
+            return buildResponse(authUser.get());
+        } else throw new UsernameNotFoundException("Username not found !");
     }
 
-    private String generatedEncryptedPassword(String password) {
+    private String generateEncryptedPassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
@@ -73,6 +77,14 @@ public class UsersServiceImpl implements UsersService {
         user.ifPresent( user1 -> {
         throw new RuntimeException("UserName already in use : " + user1.getUsername());
         });
+    }
+
+    private CreateUserResponse buildResponse(AuthUser user) {
+        CreateUserResponse response = null;
+        return response.builder()
+                .uuid(user.getUuid()).firstName(user.getFirstName())
+                .lastName(user.getLastName()).userName(user.getUsername())
+                .emailId(user.getEmailId()).build();
     }
 
 }
