@@ -70,6 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/actuator/**").permitAll() // Allow access to Actuator urls
 				.antMatchers("/users/create").permitAll()
 				.antMatchers("/users/uuid/**").permitAll()
+				.antMatchers("/twilio/**").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and()
 				// make sure we use stateless session; session won't be used to

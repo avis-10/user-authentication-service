@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "c2338f16-8a28-4344-b902-c6d24088a5d8",
+		"name": "authorization_service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "twilio",
+			"item": [
+				{
+					"name": "sendOtp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"siva\",\r\n    \"phone\":\"+918297041324\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8400/twilio/otp/send-otp",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"twilio",
+								"otp",
+								"send-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyOtp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"siva\",\r\n    \"phonenumber\":\"+918297041324\",\r\n    \"otp\": \"645310\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8400/twilio/otp/verify-otp",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"twilio",
+								"otp",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"avis\",\r\n    \"password\": \"avis\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8400/authenticate",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"siva\",\r\n    \"lastName\": \"vasamsetti\",\r\n    \"userName\": \"avis011\",\r\n    \"emailId\": \"sivamessiva10@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8400/users/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByUserName",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMy0xMC0yM1QwMTowMzoxNi45Njg2NzM5MDAiLCJzdWIiOiJhdmlzIiwicm9sZSI6ImFkbWluIiwibWVzc2FnZSI6InNvbWUgaW1wIG1lc3NhZ2UiLCJleHAiOjE2OTgwMjExOTYsImlhdCI6MTY5ODAwMzE5Nn0.JVsdB74RqnzONzTtQoqUVkw0Qs1SYKIMlqgZu9aF_CldNwuN3IVoLG_tu95-t9IBhjh3_JphcfPAfDjJlrg2Jg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8400/users/username/avis011",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"users",
+								"username",
+								"avis011"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByUuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMy0xMC0yM1QwMTowMzoxNi45Njg2NzM5MDAiLCJzdWIiOiJhdmlzIiwicm9sZSI6ImFkbWluIiwibWVzc2FnZSI6InNvbWUgaW1wIG1lc3NhZ2UiLCJleHAiOjE2OTgwMjExOTYsImlhdCI6MTY5ODAwMzE5Nn0.JVsdB74RqnzONzTtQoqUVkw0Qs1SYKIMlqgZu9aF_CldNwuN3IVoLG_tu95-t9IBhjh3_JphcfPAfDjJlrg2Jg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8400/users/uuid/adec6b35-02c1-46f9-8305-ada143a87811",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"users",
+								"uuid",
+								"adec6b35-02c1-46f9-8305-ada143a87811"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
