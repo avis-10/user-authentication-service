@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests()
-				.antMatchers("/authenticate", "/admin/greet","/inventory/searchFlight","/inventory/searchFlightByID/{invID}").permitAll()
+				.antMatchers("/users/login").permitAll()
 				.antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Allow access to Swagger UI and API documentation
 				.antMatchers("/h2-console/**", "/h2-console/login.do?**").permitAll() // Allow access to H2 Console
 				.antMatchers("/actuator/**").permitAll() // Allow access to Actuator urls
